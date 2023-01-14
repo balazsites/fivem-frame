@@ -1,0 +1,42 @@
+#body {
+    display: none;
+    background-color: rgba(31, 31, 31, 0.559);
+    height: auto;
+}
+ 
+.form {
+    position: absolute;
+    width: 33vw;
+    margin: 0;
+    top: 50%;
+    background-color: transparent;
+    border-radius: 10px;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.title {
+    display: flex;
+    color: white;
+    justify-content: space-around;
+}
+
+.gomba {
+    padding: 1vw;
+    width: 13vw;
+    height: 4vw;
+    background: rgba(42, 42, 42, 0.705);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all 1000ms;
+}
+.gomba:hover {
+    padding: 1vw;
+    width: 15vw;
+    height: 4vw;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+    background: linear-gradient(115deg, rgba(0,32,63,1) 22%, rgba(173,239,209,1) 62%);
+}
