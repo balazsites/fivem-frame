@@ -1,0 +1,192 @@
+#body {
+    background-color: transparent;
+    overflow: auto;
+}
+
+.conti {
+    display: none;
+    width: 33vw;
+    /* height: 100vh; */
+    background-color: rgba(31, 31, 31, 0.613);
+    color: white;
+}
+
+.conti2 {
+    display: none;
+    width: 33vw;
+    /* height: 100vh; */
+    background-color: rgba(31, 31, 31, 0.613);
+    color: white;
+}
+
+.conti3 {
+    display: none;
+    width: 33vw;
+    /* height: 100vh; */
+    background-color: rgba(31, 31, 31, 0.613);
+    color: white;
+}
+
+.rbolt {
+    display: none;
+    width: 33vw;
+    /* height: 100vh; */
+    background-color: rgba(31, 31, 31, 0.613);
+    color: white;
+}
+
+.contik {
+    color: white;
+}
+
+.range {
+    width: 100%;
+    padding: 10px;
+    border-radius: 100px;
+    background-color: rgba(31, 31, 31, 0.705);
+}
+
+.arrow {
+    vertical-align: middle;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+output {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.megjelen {
+    padding: 1vw;
+    width: 13vw;
+    height: 4vw;
+    background-color: rgba(42, 42, 42, 0.705);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all 200ms;
+    border: 1px solid #0966bee2;
+}
+
+.megjelen:hover {
+    padding: 1vw;
+    width: 15vw;
+    height: 4vw;
+    background-color: #0966beb3;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+}
+
+.ruha {
+    padding: 1vw;
+    width: 13vw;
+    height: 4vw;
+    background-color: rgba(42, 42, 42, 0.705);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all 200ms;
+    border: 1px solid #0966bee2;
+}
+
+.ruha:hover {
+    padding: 1vw;
+    width: 15vw;
+    height: 4vw;
+    background-color: #0966beb3;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+}
+
+.disabled {
+    width: 13vw;
+    height: 4vw;
+    cursor: default;
+    background-color: #0966beb3;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+}
+ 
+.disabled:hover {
+    width: 13vw;
+    height: 4vw;
+    cursor: default;
+    background-color: #0966beb3;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+}
+
+.ment {
+    padding: 1vw;
+    width: 13vw;
+    height: 4vw;
+    background-color: rgba(42, 42, 42, 0.705);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all 200ms;
+    border: 1px solid #0966bee2;
+}
+
+.ment:hover {
+    padding: 1vw;
+    width: 15vw;
+    height: 4vw;
+    background-color: #0966beb3;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+}
+
+.buy {
+    padding: 1vw;
+    width: 13vw;
+    height: 4vw;
+    background-color: rgba(42, 42, 42, 0.705);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all 200ms;
+    border: 1px solid #0966bee2;
+}
+
+.buy:hover {
+    padding: 1vw;
+    width: 15vw;
+    height: 4vw;
+    background-color: #0966beb3;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+}
+
+.submit {
+    display: none;
+    position: fixed;
+    bottom: 1vw;
+    right: 1vw;
+    padding: 1vw;
+    width: 13vw;
+    height: 4vw;
+    background-color: rgba(42, 42, 42, 0.705);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+    transition: all 200ms;
+    border: 1px solid #0966bee2;
+}
+.submit:hover {
+    padding: 1vw;
+    width: 15vw;
+    height: 4vw;
+    background-color: #0966beb3;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 100px;
+}
