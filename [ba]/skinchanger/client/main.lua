@@ -240,7 +240,7 @@ function ApplySkin(skin, clothes)
   end
 
   SetPedPropIndex(playerPed, 1, Character['glasses_1'], Character['glasses_2'], 2)  -- Glasses
-
+  print('anyad1')
 end
 
 AddEventHandler('skinchanger:loadDefaultModel', function(loadMale, cb)
@@ -323,14 +323,15 @@ AddEventHandler('skinchanger:loadSkin', function(skin, cb)
   --[[ else ]]
 
     ApplySkin(skin)
-
+    print(skin)
+    print('anyad2')
     if cb ~= nil then
       cb()
     end
 
   --[[ end ]]
 
-  LastSex = skin['sex']
+  --[[ LastSex = skin['sex']
     
   Citizen.CreateThread(function()
 
@@ -347,8 +348,7 @@ AddEventHandler('skinchanger:loadSkin', function(skin, cb)
     SetModelAsNoLongerNeeded(characterModel)
     TriggerEvent('skinchanger:modelLoaded')
 
-  end)
-
+  end) ]]
 end)
 
 RegisterNetEvent('skinchanger:loadClothes')

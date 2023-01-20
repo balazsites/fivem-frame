@@ -2,15 +2,17 @@ fx_version 'cerulean'
 games { 'gta5' }
 
 author 'Bazsi'
-description 'Skinchanger'
+description 'Graázs'
 version '0.0.1'
 
+shared_script 'config.lua'
+
 client_scripts {
-    'client/skin.lua'
+    'client/main.lua'
 }
 
 server_scripts {
-    'server/skin.lua',
+    'server/main.lua',
     '@mysql-async/lib/MySQL.lua'
 }
 
@@ -18,7 +20,5 @@ ui_page 'ui/index.html'
 
 files {
     'ui/index.html',
-    'ui/cloth.html',
-    'ui/style.css',
-    'ui/main.js'
+    'ui/style.css'
 }

@@ -6,51 +6,26 @@
 .conti {
     display: none;
     width: 33vw;
-    /* height: 100vh; */
+    height: 100vh;
+    right: 0;
     background-color: rgba(31, 31, 31, 0.613);
     color: white;
+    transition: all 350ms;
 }
 
 .conti2 {
     display: none;
     width: 33vw;
-    /* height: 100vh; */
+    height: 100vh;
+    right: 0;
     background-color: rgba(31, 31, 31, 0.613);
     color: white;
 }
 
-.conti3 {
-    display: none;
-    width: 33vw;
-    /* height: 100vh; */
-    background-color: rgba(31, 31, 31, 0.613);
+.gorog {
+    height: 80vh;
+    overflow: auto;
     color: white;
-}
-
-.rbolt {
-    display: none;
-    width: 33vw;
-    /* height: 100vh; */
-    background-color: rgba(31, 31, 31, 0.613);
-    color: white;
-}
-
-.contik {
-    color: white;
-}
-
-.range {
-    width: 100%;
-    padding: 10px;
-    border-radius: 100px;
-    background-color: rgba(31, 31, 31, 0.705);
-}
-
-.arrow {
-    vertical-align: middle;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 output {
@@ -58,10 +33,25 @@ output {
     margin-left: 10px;
 }
 
-.megjelen {
-    padding: 1vw;
-    width: 13vw;
-    height: 4vw;
+td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-width: 100px;
+    max-width: 10px;
+}
+
+table {
+    width: 100%;
+
+}
+
+.kgomb {
+    margin: 2px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    padding: auto;
     background-color: rgba(42, 42, 42, 0.705);
     color: rgb(255, 255, 255);
     text-decoration: none;
@@ -70,20 +60,18 @@ output {
     border: 1px solid #0966bee2;
 }
 
-.megjelen:hover {
-    padding: 1vw;
-    width: 15vw;
-    height: 4vw;
+.kgomb:hover {
     background-color: #0966beb3;
     color: rgb(255, 255, 255);
     text-decoration: none;
     border-radius: 100px;
 }
 
-.ruha {
-    padding: 1vw;
-    width: 13vw;
-    height: 4vw;
+.ggomb {
+    margin: 10px;
+    height: 2vw;
+    text-align: center;
+    padding: auto;
     background-color: rgba(42, 42, 42, 0.705);
     color: rgb(255, 255, 255);
     text-decoration: none;
@@ -92,10 +80,7 @@ output {
     border: 1px solid #0966bee2;
 }
 
-.ruha:hover {
-    padding: 1vw;
-    width: 15vw;
-    height: 4vw;
+.ggomb:hover {
     background-color: #0966beb3;
     color: rgb(255, 255, 255);
     text-decoration: none;
@@ -103,21 +88,17 @@ output {
 }
 
 .disabled {
-    width: 13vw;
-    height: 4vw;
     cursor: default;
     background-color: #0966beb3;
-    color: rgb(255, 255, 255);
+    color: rgb(179, 179, 179);
     text-decoration: none;
     border-radius: 100px;
 }
  
 .disabled:hover {
-    width: 13vw;
-    height: 4vw;
     cursor: default;
     background-color: #0966beb3;
-    color: rgb(255, 255, 255);
+    color: rgb(179, 179, 179);
     text-decoration: none;
     border-radius: 100px;
 }
@@ -189,4 +170,81 @@ output {
     color: rgb(255, 255, 255);
     text-decoration: none;
     border-radius: 100px;
+}
+
+#bezaras {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 50px;
+}
+
+.notification {
+    display: none;
+    /* position: absolute;
+    bottom: 250px;
+    left: 28px;
+    background-color: rgba(42, 42, 42, 0.801);
+    height: 80px;
+    width: 270.5px;
+    border-radius: 30px;
+ */
+    --b: 5px;   /* thickness of the border */
+    --c: red;   /* color of the border */
+    --w: 20px;  /* width of border */
+    --r: 30px;  /* radius */
+    
+  
+    padding: var(--b); /* space for the border */
+    
+    position:absolute;
+    /*Irrelevant code*/  
+    height: 100px;
+    width: 270.5px;
+    border-radius: 40px;
+    box-sizing:border-box;
+    align-items:center;
+    text-align:center;
+    background-color: rgba(42, 42, 42, 0.801);
+    bottom: 250px;
+    left: 28px;
+    color: white;
+    padding: 10px;
+}
+
+.notification::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--c,red);
+    padding: var(--b);
+    border-radius: var(--r);
+    -webkit-mask:
+      linear-gradient(  0deg,#000 calc(2*var(--b)),#0000 0) 50% var(--b)/calc(100% - 2*var(--w)) 100% repeat-y,
+      linear-gradient(-90deg,#000 calc(2*var(--b)),#0000 0) var(--b) 50%/100% calc(100% - 2*var(--w)) repeat-x,
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(42, 42, 42, 0.705);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  border-radius: 100px;
 }

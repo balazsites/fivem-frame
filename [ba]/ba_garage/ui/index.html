@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--EGYEB-->
+    <title>Garázs panel</title>
+    <meta name="description" content="register">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <!--IMPORT-->
+    <link rel="stylesheet" href="style.css">
+    <!--BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8213bf8394.js" crossorigin="anonymous"></script>
+</head>
+
+<body id="body">
+    <div class="conti p-3" id="conti">
+        <div class="d-flex justify-content-around">
+            <h1 id="garazsfelirat">Garázsod</h1>
+        </div>
+        <button id="bezaras" class="btn btn-danger"><i class="fa-solid fa-x"></i></button>
+        <div class="row gombok">
+            <a class="ggomb col disabled" id="betu">A</a>
+            <a href="" onclick="return show('conti2','conti');" class="ggomb col">ÖSSZES</a>
+        </div>
+        <hr>
+        <div class="gorog">
+            <table class="st">
+                <tr>
+                    <th>Jármű</th>
+                    <th>Rendszám</th>
+                    <th>Állapot</th>
+                    <th>Kezelés</th>
+                </tr>
+                <script>
+                    window.addEventListener('message', (event) => {
+                        if (event.data.type === 'sajatg') {
+                            /* document.getElementById("vehi").innerHTML = "<tr><td>"+ event.data.vehicle +"</td><td>"+ event.data.plate +"</td><td>"+ event.data.ingarage +"</td></tr>" */
+                            $('.st').html(getVehiclestofrom(event.data.vehiclesList))
+                        }
+                    });
+                </script>
+                <!-- <tr>
+                    <td>RIHNO</td>
+                    <td>89ZUK569</td>
+                    <td>Garázsban</td>
+                    <td>
+                        <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Vontatás és lefoglalás"><i class="fa-solid fa-x"></i></button>
+                        <button class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Kivesz"><i class="fa-solid fa-share"></i></button>
+                    </td>
+                </tr> -->
+                
+            </table>
+        </div>
+    </div>
+    <div class="conti2 p-3" id="conti2">
+        <div class="d-flex justify-content-around">
+            <h1>Összes Garázs</h1>
+        </div>
+        <div class="row gombok">
+            <a href="" onclick="return show('conti','conti2');" class="ggomb col"><i class="fa-solid fa-backward"></i> Vissza</a>
+            <a class="ggomb col disabled">ÖSSZES</a>
+        </div>
+        <hr>
+        <div class="gorog">
+            <table class="nd">
+                <tr>
+                    <th>Jármű</th>
+                    <th>Rendszám</th>
+                    <th>Állapot</th>
+                </tr>
+                <script>
+                    window.addEventListener('message', (event) => {
+                        if (event.data.type === 'og') {
+                            /* document.getElementById("vehi").innerHTML = "<tr><td>"+ event.data.vehicle +"</td><td>"+ event.data.plate +"</td><td>"+ event.data.ingarage +"</td></tr>" */
+                            $('.nd').html(getVehicles(event.data.vehiclesList))
+                        }
+                    });
+                </script>
+                <!-- <tr>
+                    <td>RIHNO</td>
+                    <td>89ZUK569</td>
+                    <td>Garázsban</td>
+                    <td>
+                        <button class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Vontatás és lefoglalás"><i class="fa-solid fa-x"></i></button>
+                        <button class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Kivesz"><i class="fa-solid fa-share"></i></button>
+                    </td>
+                </tr> -->
+                
+            </table>
+        </div>
+    </div>
+    <div class="notification" id="notification" style="--c:repeating-linear-gradient(45deg,#0966bee2,#0966bee2);--w:40px;--b:2px;--r:40px;">
+        <h4 id="header">Garázs</h4>
+        <span id="text">Nyomj [E]-t, hogy meg nyisd a garázst!</span>
+        <script>
+            // megnyitás
+            window.addEventListener('message', (event) => {
+                if (event.data.type === 'notifyo') {
+                    /* document.getElementById("notification").style.display = "inline-flex"; */
+                    $("#notification").fadeIn(350);
+                    document.getElementById("header").textContent = event.data.header;
+                    document.getElementById("text").textContent = event.data.text;
+                }
+            });
+            // bezárás
+            window.addEventListener('message', (event) => {
+                if (event.data.type === 'notifyc') {
+                    $("#notification").fadeOut(350);
+                }
+            });
+        </script>
+    </div>
+    <script>
+        function getVehiclestofrom (vehicle) {
+            let html = ''
+            let vehicleData = JSON.parse(vehicle)
+            html += "<tr><th>Jármű</th><th>Rendszám</th><th>Állapot</th><th>Kezelés</th></tr>"
+            
+            for (let i = 0; i < vehicleData.length; i++) {
+                html += "<tr><td>"+ vehicleData[i].vehicle +"</td>"
+                html += "<td>"+ vehicleData[i].plate +"</td>"
+                html += "<td>"+ vehicleData[i].garage +"</td>"
+                html += '<td><button class="kgomb"><i class="fa-solid fa-x"></i></button>'
+                html += '<button data-button="spawn" data-vehi="'+ vehicleData[i].vehicle +'" data-plate="'+ vehicleData[i].plate +'" class="kgomb"><i class="fa-solid fa-share"></i></button></td></tr>'
+            }
+
+            return html
+        }
+
+        $(document).on(
+            'click',
+            "button[data-button='spawn'].kgomb",
+            function (event) {
+            $.post(
+                'https://ba_garage/getout',
+                JSON.stringify({
+                    vehicle: $(this).data('vehi'),
+                    plate: $(this).data('plate')
+                })
+            )
+            }
+        )
+
+        function getVehicles (vehicle) {
+            let html = ''
+            let vehicleData = JSON.parse(vehicle)
+            html += "<tr><th>Jármű</th><th>Rendszám</th><th>Állapot</th></tr>"
+            
+            for (let i = 0; i < vehicleData.length; i++) {
+                html += "<tr><td>"+ vehicleData[i].vehicle +"</td>"
+                html += "<td>"+ vehicleData[i].plate +"</td>"
+                html += "<td>Garázsban ("+ vehicleData[i].garage +") </td></tr>"
+            }
+
+            return html
+        }
+        // megnyitás
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'openg') {
+                document.getElementById("garazsfelirat").textContent = 'Garázs (' + event.data.garage + ')';
+                document.getElementById("betu").textContent = event.data.garage;
+                document.getElementById("conti").style.display = "block";
+                $( "#notification" ).animate({
+                    left: "-100%",
+                }, 350, function() {
+                    // Animation complete.
+                });
+                /* $("#notification").hide(); */
+            }
+        });
+
+        // bezaras
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'close') {
+                document.getElementById("conti").style.display = "none";
+                document.getElementById("conti2").style.display = "none";
+                $( "#notification" ).animate({
+                    left: "28px",
+                }, 350, function() {
+                    // Animation complete.
+                });
+            }
+        });
+
+        $("#bezaras").click(function() {
+
+            fetch('https://ba_garage/close', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify({
+                    itemId: 'close'
+                })
+            }).then(resp => resp.json()).then(resp => console.log(resp));
+        });
+
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        
+        function show(shown, hidden) {
+            document.getElementById(shown).style.display='block';
+            document.getElementById(hidden).style.display='none';
+            return false;
+        }
+    </script>
+</body>
+</html>

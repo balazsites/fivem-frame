@@ -358,7 +358,7 @@ end)
 
 RegisterNetEvent('ba_skin:skinDef')
 AddEventHandler('ba_skin:skinDef', function(nem)
-    --[[ local kinezet1 = {
+    local kinezet1 = {
         sex          = 332,
         face         = 0,
         skin         = 0,
@@ -391,7 +391,7 @@ AddEventHandler('ba_skin:skinDef', function(nem)
         helmet_2     = 0,
         glasses_1    = 0,
         glasses_2    = 0,
-    } ]]
+    }
     if nem == '1' then 
         local model = 'mp_f_freemode_01'
         if IsModelInCdimage(model) and IsModelValid(model) then
@@ -420,7 +420,7 @@ AddEventHandler('ba_skin:skinDef', function(nem)
 end)
 
 RegisterNUICallback('registerskin', function(data, cb)
-    --[[ local karakter = {
+    local karakter = {
         face         = data.face,
         skin         = data.skin,
         beard_1      = data.beard_1,
@@ -462,18 +462,20 @@ RegisterNUICallback('registerskin', function(data, cb)
         helmet_2     = data.helmet_2,
         glasses_1    = data.glasses_1,
         glasses_2    = data.glasses_2,
-    } ]]
+    }
     SetNuiFocus(false, false)
     SendNUIMessage({
         type = 'closer'
     })
-    TriggerEvent('skinchanger:getSkin', function(skin)
-        print(json.encode(skin))
+    print(json.encode(karakter))
+    TriggerServerEvent('ba_skin:registerskin', karakter)
+    --[[ TriggerEvent('skinchanger:getSkin', function(skin)
+        print(json.encode(karakter))
         TriggerServerEvent('ba_skin:registerskin', skin)
-    end)
+    end) ]]
 
 end)
---[[ local karakter = {
+local karakter = {
     face         = 0,
     skin         = 0,
     age_1        = 0,
@@ -522,9 +524,9 @@ end)
     glasses_1    = 0,
     glasses_2    = 0,
 }
- ]]
 RegisterNetEvent('ba_skin:loadskin')
 AddEventHandler('ba_skin:loadskin', function(skimo)
-    TriggerEvent('skinchanger:loadSkin', skimo)
+    print(karakter)
+    TriggerEvent('skinchanger:loadSkin', karakter)
     print('fasza')
 end)

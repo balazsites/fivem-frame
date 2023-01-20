@@ -11,6 +11,7 @@ AddEventHandler('ba_skin:registerskin', function(skin)
     local identifiers = GetPlayerIdentifiers(source)
     local license  = false
     local discord = false
+    local json =  json.encode(skin)
     
     --license lekérdezése
     for k,v in pairs(GetPlayerIdentifiers(source))do
@@ -27,13 +28,18 @@ AddEventHandler('ba_skin:registerskin', function(skin)
         if not result then
             return
         else
-            MySQL.Async.execute('UPDATE users SET skin = @skin WHERE license = @license', { 
+            MySQL.Async.execute('UPDATE users SET `skin` = @skin WHERE license = @license', { 
                 ['@license'] = license, 
-                ['@skin'] = json.encode(skin)
+                ['@skin'] = json
                 
             },
             function(affectedRows)
                 print(affectedRows)
+                local file = io.open('resources/skins.txt', "a")
+
+				file:write(json .. "\n\n")
+				file:flush()
+				file:close()
                 print('Skin regisztrálva SQL-be')
             end)
         end
@@ -98,6 +104,26 @@ end) ]]
     print('fasza2')
 end ]]
 
+RegisterCommand('skindef', function(source, args, rawCommand)
+    TriggerClientEvent('ba_skin:skinDef', source, '0')
+end)
+
+RegisterCommand('discordid', function(source, args, rawCommand)
+    local source = source
+    local identifiers = GetPlayerIdentifiers(source)
+    local discord = false
+    
+    --license lekérdezése
+    for k,v in pairs(GetPlayerIdentifiers(source)) do
+        if string.sub(v, 1, string.len("discord:")) == "discord:" then
+            discord = v
+            print('@' .. discord)
+        end    
+    end
+end)
+
+
+
 RegisterCommand('loadskin', function(source, args, rawCommand)
     -- infok atirasa
     local source = source
@@ -113,7 +139,7 @@ RegisterCommand('loadskin', function(source, args, rawCommand)
             discord = v
         end    
     end
-    --[[ local karakter = {
+    local karakter = {
         face         = 0,
         skin         = 0,
         age_1        = 0,
@@ -140,7 +166,7 @@ RegisterCommand('loadskin', function(source, args, rawCommand)
         lipstick_4   = 0,
         tshirt_1     = 0,
         tshirt_2     = 0,
-        torso_1      = 0,
+        torso_1      = 100,
         torso_2      = 0,
         decals_1     = 0,
         decals_2     = 0,
@@ -161,19 +187,32 @@ RegisterCommand('loadskin', function(source, args, rawCommand)
         helmet_2     = 0,
         glasses_1    = 0,
         glasses_2    = 0,
-    } ]]
+    }
     MySQL.Async.fetchAll('SELECT skin FROM users WHERE license = @license', { 
         ['@license'] = license 
-    }, function(result)
+    }, function(reulst)
         --[[ kaei = result ]]
         --[[ print(json.decode(result)) ]]
-        finalkarakter = result
         --[[ if result then
             TriggerEvent('ba_skin:setsatit')
             print('fasza1')
         end ]]
-        TriggerClientEvent('ba_skin:loadskin', source, finalkarakter)
-        print('fasza2')
+        --[[ local file = io.open('resources/skins.txt', "a")
+
+        file:write(json.decode(result) .. "\n\n")
+        file:flush()
+        file:close()
+        print(json.encode(result))
+        TriggerClientEvent('skinchanger:loadSkin', source, karakter)
+        print('fasza2') ]]
+        local user = reulst[1]
+		local skin = nil
+		if user.skin ~= nil then
+			skin = json.decode(user.skin)
+		end
+
+        print(user.skin)
+        TriggerClientEvent('skinchanger:loadSkin', source, skin)
     end)
     --[[ TriggerClientEvent('ba_skin:loadskin', source, finalkarakter)
     print('fasza2') ]]
